@@ -1,0 +1,99 @@
+.fitness-section {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+    height: 90vh;
+    /* Set height to 70% of the viewport height */
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect height */
+}
+
+.fitness-image {
+    width: 50%;
+    height: 100%;
+    /* Ensure the image fills its container */
+    object-fit: cover;
+    /* Maintain aspect ratio and crop only when necessary */
+    object-position: top;
+    /* Show the image starting from the top */
+    border-radius: 1rem;
+}
+
+.content {
+    width: 50%;
+    height: 100%;
+    /* Match the section's height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Vertically center the content */
+}
+
+.title {
+    color: #ff5722;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: #ff5722;
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.feature-description {
+    font-size: 1rem;
+    color: #666;
+}
+
+.live {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fitness-section {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        /* Let the content dictate the height on smaller screens */
+    }
+
+    .fitness-image {
+        width: 100%;
+        height: auto;
+        /* Allow image to adjust to its content */
+    }
+
+    .content {
+        width: 100%;
+    }
+}
