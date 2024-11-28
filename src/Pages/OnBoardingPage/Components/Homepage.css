@@ -1,0 +1,17 @@
+.homepage {
+    background-color: "#F5F5F5";
+}
+
+
+
+.btn-primary {
+    color: #5771ff;
+}
+
+
+@media (max-width: 450px) {
+    .homepage {
+        min-height: 100%;
+    }
+
+}
