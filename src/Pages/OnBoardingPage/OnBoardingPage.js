@@ -3,6 +3,10 @@ import { ThemeProvider } from 'styled-components'
 import Homepage from './Components/Homepage';
 import Footer from '../../Shared/Footer';
 import WavyBackground from '../../Shared/WavyBackground';
+import StatsCard from './Components/statscard';
+import FitnessSection from './Components/Fitness-Section/FitnessSection';
+import Objectives from './Components/RoutineCard/Objectives';
+import Testimonials from './Components/Testimanials/Testimonials';
 
 const theme = {
   colors: {
@@ -18,6 +22,12 @@ function OnBoardingPage() {
   return (
     <ThemeProvider theme={theme}>
       <Homepage />
+      <StatsCard />
+      <FitnessSection />
+      <Objectives />
+      <Testimonials />
+      
+
       <WavyBackground />
       <Footer />
 
