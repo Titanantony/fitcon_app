@@ -9,6 +9,7 @@ const Container = styled.div`
   height: 100vh;
   background: url(${background}) no-repeat center center;
   background-size: cover;
+  justify-content: center;
   align-items: center;
 `;
 

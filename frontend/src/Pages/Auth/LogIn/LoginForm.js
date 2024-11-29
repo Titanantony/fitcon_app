@@ -53,7 +53,7 @@ const LoginForm = () => {
       <Input type="password" placeholder="Password" />
       <CheckboxContainer>
         <label>
-          <input type="checkbox" /> Remember for 30 days
+          <input type="checkbox" /> Remember Me
         </label>
         <a href="#" style={{ color: '#007BFF', textDecoration: 'none' }}>
           Forgot password?
