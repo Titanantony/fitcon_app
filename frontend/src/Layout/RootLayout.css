@@ -31,7 +31,7 @@
 }
 
 .nav-links a:hover {
-    color: #ff4500;
+    color: #5771ff;
 }
 
 .dropdown {
@@ -42,6 +42,37 @@
     display: none;
 }
 
+/* Join Us Button */
+.join {
+    font-size: 16px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Contact Us Button */
+.signup {
+    font-size: 16px;
+    color: white;
+    background-color: #5771ff;
+    /* Bright orange */
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+
+li {
+    list-style: none;
+    /* Remove bullet points */
+    display: inline-block;
+    margin-right: 10px;
+}
 
 /* Media query for smaller screens */
 @media (max-width: 588px) {

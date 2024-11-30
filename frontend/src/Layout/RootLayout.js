@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom'; // Assuming React Router
+import { Outlet, Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; // Import AuthContext
 import './RootLayout.css';
 import logo from '../images/logo.png';
 
 const RootLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth(); // Get auth state
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <div>
@@ -24,12 +24,26 @@ const RootLayout = () => {
         <ul className={`nav-links ${menuOpen ? 'show' : ''}`}>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/classes">Classes</Link></li>
-          <li><Link to="/auth">Join Us</Link></li>
-          <li><Link to="/about">About</Link></li>
+          {isAuthenticated ? (
+            <>
+              <li><Link to="/dashboard">Dashboard</Link></li>
+              <li><button onClick={logout} className="logout-button">Logout</button></li>
+            </>
+          ) : (
+            <>
+  <li>
+    <Link to="/signUp" className="signup">Join us →</Link>
+  </li>
+  <li>
+    <Link to="/signIn" className="join">Sign-In</Link>
+  </li>
+</>
+          )}
+          <li><a href="#about">About</a></li>
         </ul>
       </nav>
       <main>
-        <Outlet /> {/* React Router will render child routes here */}
+        <Outlet /> {/* React Router renders child routes here */}
       </main>
     </div>
   );
