@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link } from 'react-router-dom';
+
 
 const Form = styled.form`
   display: flex;
@@ -29,6 +32,7 @@ const Button = styled.button`
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #444444;
@@ -37,6 +41,10 @@ const Button = styled.button`
 
 const GoogleButton = styled(Button)`
   background-color: #4285f4;
+
+  &:hover {
+    background-color: #357ae8;
+  }
 `;
 
 const FooterText = styled.p`
@@ -46,21 +54,111 @@ const FooterText = styled.p`
   a {
     color: #007bff;
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin: -10px 0 10px;
+`;
+
 const SignUpForm = () => {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate input
+    if (!fullName || !email || !password || !confirmPassword) {
+      setError('All fields are required');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setError('');
+    try {
+      const response = await fetch('http://localhost/fitcon/register.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert('Signup successful!');
+        setFullName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        navigate('/');
+      } else {
+        setError(data.message || 'Signup failed. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Title>Create an Account</Title>
-      <Input type="text" placeholder="Full Name" required />
-      <Input type="email" placeholder="Email" required />
-      <Input type="password" placeholder="Password" required />
-      <Input type="password" placeholder="Confirm Password" required />
-      <Button>Sign Up</Button>
-      <GoogleButton>Sign Up with Google</GoogleButton>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <Input
+        type="text"
+        placeholder="Full Name"
+        value={fullName}
+        onChange={(e) => setFullName(e.target.value)}
+        autoComplete="name"
+        required
+      />
+      <Input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        autoComplete="email"
+        required
+      />
+      <Input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        autoComplete="new-password"
+        required
+      />
+      <Input
+        type="password"
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        required
+      />
+      <Button type="submit">Sign Up</Button>
+      <GoogleButton type="button" disabled>
+        Sign Up with Google 
+      </GoogleButton>
       <FooterText>
-        Already have an account? <a href="#">Log In</a>
+        Already have an account? <Link to="/signIn">Log In</Link>
       </FooterText>
     </Form>
   );
