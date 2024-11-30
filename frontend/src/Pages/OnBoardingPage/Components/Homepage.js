@@ -1,7 +1,9 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import image from "../../../images/home.png";
-import "./Homepage.css"
+import "./Homepage.css";
+import { Link } from 'react-router-dom';
+
 
 // Keyframes for animation
 const fadeIn = keyframes`
@@ -85,7 +87,7 @@ const Homepage = () => {
           Strong is the simplest, most intuitive workout tracking experience.
           Trusted by over 3 million users worldwide.
         </p>
-        <button>Get Started</button>
+        <button> <Link to="/signUp" style={{ textDecoration: 'none', color: 'black'}}>Get Started</Link></button>
       </TextContent>
       <ImageContent>
         <img src={image} alt="Man exercising" />

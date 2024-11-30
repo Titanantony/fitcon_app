@@ -26,7 +26,6 @@ function OnBoardingPage() {
       <FitnessSection />
       <Objectives />
       <Testimonials />
-      
 
       <WavyBackground />
       <Footer />
