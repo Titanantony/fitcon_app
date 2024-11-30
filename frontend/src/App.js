@@ -5,22 +5,34 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-// Layout
+// Layouts
 import RootLayout from './Layout/RootLayout';
+import AuthLayout from './Layout/AuthLayout';
 
 // Pages
 import OnBoardingPage from './Pages/OnBoardingPage/OnBoardingPage';
 import Classes from './Pages/Classes/Classes';
-import Authentication from './Pages/Auth/Authentication';
+import LoginPage from './Pages/Auth/LogIn/LoginPage';
+import SignUpPage from './Pages/Auth/SignUp/SignUpPage';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<RootLayout />}>
-      <Route index element={<OnBoardingPage />} />
-      <Route path='classes' element={<Classes />} />
-      <Route path='auth' element={<Authentication />} />
-    </Route>,
-  ),
+    <>
+      {/* Routes with navigation (RootLayout) */}
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<OnBoardingPage />} />
+        <Route path="classes" element={<Classes />} />
+        <Route path="dashboard" element={<Dashboard />} /> {/* Protected route */}
+      </Route>
+
+      {/* Routes without navigation (AuthLayout) */}
+      <Route element={<AuthLayout />}>
+        <Route path="signIn" element={<LoginPage />} />
+        <Route path="signUp" element={<SignUpPage />} />
+      </Route>
+    </>
+  )
 );
 
 function App() {
