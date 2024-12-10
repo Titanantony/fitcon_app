@@ -13,7 +13,7 @@ function Classes() {
   return (
     <>
     <div className="text-center">
-      <p className="welcome-text">Welcome to FitCon's Dynamic Classes</p>
+      <h1 className="welcome-text">Welcome to FitCon's Dynamic Classes</h1>
     </div>
     <Header />
     <Features />

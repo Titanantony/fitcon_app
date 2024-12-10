@@ -22,23 +22,13 @@ h1 {
     color: #5771ff;
 }
 
+.card {
+    margin: auto;
+}
+
 .card-title {
     font-size: 1.2rem;
     font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .feature-icon {
-        font-size: 1.5rem;
-    }
-
-    .card-title {
-        font-size: 1rem;
-    }
 }
 
 
@@ -55,10 +45,30 @@ p {
 }
 
 .video-embed {
-    width: 100%;
-    max-width: 800px;
+    height: 85vh;
+    max-width: 70%;
     margin: 0 auto;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .video-embed {
+        height: 40vh;
+        max-width: 80%;
+    }
 }
