@@ -27,12 +27,12 @@ const RootLayout = () => {
           {isAuthenticated ? (
             <>
               <li><Link to="/dashboard">Dashboard</Link></li>
-              <li><button onClick={logout} className="logout-button">Logout</button></li>
+              <li><button onClick={logout} className="logout">Logout</button></li>
             </>
           ) : (
             <>
   <li>
-    <Link to="/signUp" className="signup">Join us →</Link>
+    <Link to="/signUp" className="signup">Join us</Link>
   </li>
   <li>
     <Link to="/signIn" className="join">Sign-In</Link>

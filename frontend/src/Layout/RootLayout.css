@@ -50,6 +50,7 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
+
 }
 
 /* Contact Us Button */
@@ -63,6 +64,12 @@
     padding: 10px 20px;
     cursor: pointer;
     text-decoration: none;
+
+}
+
+.signup:hover {
+    color: black;
+    background-color: rgb(228, 148, 148);
 }
 
 
@@ -72,6 +79,15 @@ li {
     /* Remove bullet points */
     display: inline-block;
     margin-right: 10px;
+}
+
+.logout {
+    border: #5771ff;
+
+}
+
+.logout:hover {
+    color: #5771ff;
 }
 
 /* Media query for smaller screens */
