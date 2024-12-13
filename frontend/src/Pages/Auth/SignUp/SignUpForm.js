@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import { useAuth } from '../../../AuthContext'; // Adjust path as necessary
 
 const Form = styled.form`
   display: flex;
@@ -68,6 +68,7 @@ const ErrorMessage = styled.p`
 `;
 
 const SignUpForm = () => {
+  const { signup } = useAuth(); // Access signup method
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,7 +79,6 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input
     if (!fullName || !email || !password || !confirmPassword) {
       setError('All fields are required');
       return;
@@ -90,31 +90,12 @@ const SignUpForm = () => {
     }
 
     setError('');
-    try {
-      const response = await fetch('http://localhost/fitcon/register.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          email,
-          password,
-        }),
-      });
+    const result = await signup({ fullName, email, password });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        alert('Signup successful!');
-        setFullName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        navigate('/');
-      } else {
-        setError(data.message || 'Signup failed. Please try again.');
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.');
+    if (result.success) {
+      navigate('/'); // Redirect on successful signup
+    } else {
+      setError(result.message);
     }
   };
 
@@ -155,7 +136,7 @@ const SignUpForm = () => {
       />
       <Button type="submit">Sign Up</Button>
       <GoogleButton type="button" disabled>
-        Sign Up with Google 
+        Sign Up with Google
       </GoogleButton>
       <FooterText>
         Already have an account? <Link to="/signIn">Log In</Link>
